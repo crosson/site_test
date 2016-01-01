@@ -10,7 +10,7 @@ A site test is so easy to read that any engineer should be able to immediately i
 
 Test driven development can and should exist beyond the realm of software development.
 
-`
+```
 #site sitename
 site Load balancer failover
 
@@ -24,7 +24,7 @@ ssl www.mywebsite.com 0	#If the other LB has a bad cert on the VIP this will ale
 
 #Make sure that the DNS VIP still works. Test an internal property agains`
 dns service.internal.mywebsite.com 10.10.0.100 10.0.0.15
-`
+```
 
 ## What
 Site Test is just a wrapper around RSPEC. It reads a text file you create and runs a series of tests against it. These are the current tests supported.
@@ -47,7 +47,7 @@ SMTP, Mysql and HTML parsing are currently making system calls. I plan on replac
 3. Create a site test. [See the example file](https://github.com/crosson/site_test/blob/master/example.txt)
 4. Run your tests.
 
-`
+```
 $ test_my mytest.txt 
 .........
 
@@ -55,10 +55,10 @@ Finished in 1.38 seconds (files took 0.0926 seconds to load)
 9 examples, 0 failures
 
 $ 
-`
+```
 
 What it looks like when something fails.
-`
+```
 $ test_my mytest.txt 
 F......F.
 
@@ -88,7 +88,7 @@ Failed examples:
 rspec /Users/crosson/bin/test_my[1:1:1] # Mytest check >>  ICMP: Check >>  127.0.0.1 should ping false >> 
 rspec /Users/crosson/bin/test_my[1:3:2] # Mytest check >>  HTTP: Check >>  https://store.apple.com/ should result in 200 >> 
 $
-`
+```
 
 The test tells you exactly what it expected and what it recieved instead. 
 
@@ -96,7 +96,7 @@ The test tells you exactly what it expected and what it recieved instead.
 You get access to all of rspecs flags. Normally your site_test will only output errors after the test is run. Typically you will have this running in a loop during your maintenance but sometimes you want detailed output in realtime.
 
 Try using the --format documentation flag.
-`
+```
 $ test_my mytest.txt --format documentation
 
 Mytest check >>
@@ -140,9 +140,10 @@ Failed examples:
 rspec /Users/crosson/bin/test_my[1:1:1] # Mytest check >>  ICMP: Check >>  127.0.0.1 should ping false >> 
 rspec /Users/crosson/bin/test_my[1:3:2] # Mytest check >>  HTTP: Check >>  https://store.apple.com/ should result in 200 >> 
 $
-`
+```
 
 Loop your test using the --format html flag and --out flag. Run a simple HTTP server and see your test results in real time in a web browser.
 
 `test_my mytest.txt --format html --out mytest.html`
+
 [See example file](https://github.com/crosson/site_test/blob/master/mytest.html)
