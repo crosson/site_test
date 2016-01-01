@@ -1,14 +1,12 @@
 # site_test
 ## Why
-Using RSPEC to create a functional test for broad and high impact network changes. Allowing you to increase your pereferal knowledge of the impact in your changes. This collection of scripts allows you to quickly monitor dozen's of objects. Consider the following.
+Using RSPEC to create a functional test for broad and high impact network changes. Allowing you to increase the pereferal knowledge of impact during your change. Use this instead of manually pinging X hosts and arbitrarily refreshing Y web browser.
 
-This collection of scripts encourages you to create a collection of tests that can quickly be executed and looped. Rather than waiting on a slow NMS to tell you when your change caused an impact somewhere you can create a list of checks to notify you of changes in network behavior in real time.
+You are encouraged to create a collection of tests that are quickly executed and easily looped. You no lnoger have to wait on a sluggish NMS to tell something is broke. The cost of adding items to monitor in a site_test is cheap so there is no excuse not to have as comprehensive list of checks as possible.
 
-This makes it easier to monitor load balancer and content switching behavior changes, routing changes, server behavior changes and so on and so forth. The tool encourages engineers to stop the bad habit of manually pinging X hosts during a maintenance and arbitrarily refreshing their icognito web browser to validate web behavior.
+Site tests are easy to read and share. Anyone should be able to understand the intent of the checks. You can now build templates for any number routine maintenances you do. 
 
-A site test is so easy to read that any engineer should be able to immediately interpret your collection of tests. Comment lines are available to narrate your expectations on a maintenance.
-
-Test driven development can and should exist beyond the realm of software development.
+Test driven methodolgies are good practices beyond the world of software development.
 
 ```
 #site sitename
@@ -24,6 +22,15 @@ ssl www.mywebsite.com 0	#If the other LB has a bad cert on the VIP this will ale
 
 #Make sure that the DNS VIP still works. Test an internal property agains`
 dns service.internal.mywebsite.com 10.10.0.100 10.0.0.15
+```
+```
+$ test_my mytest.txt
+......
+
+Finished in 1.15 seconds (files took 0.09136 seconds to load)
+6 examples, 0 failures
+
+$
 ```
 
 ## What
