@@ -147,4 +147,5 @@ Loop your test using the --format html flag and --out flag. Run a simple HTTP se
 `test_my mytest.txt --format html --out mytest.html`
 
 [See example output](https://github.com/crosson/site_test/blob/master/mytest.html)
-![Alt text](relative/path/to/screenshot.png?raw=true "Example Output")
+
+![Alt text](https://github.com/crosson/site_test/blob/master/screenshot.png?raw=true "Example Output")
