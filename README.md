@@ -46,7 +46,7 @@ Site Test is just a wrapper around RSPEC. It reads a text file you create and ru
 * MYSQL*
 
 
-SMTP, Mysql and HTML parsing are currently making system calls. I plan on replacing these will native ruby solutions soon.
+SMTP, Mysql and HTML parsing are currently making system calls. I plan on replacing these with native ruby solutions soon.
 
 ## How
 
@@ -159,3 +159,10 @@ Loop your test using the --format html flag and --out flag. Run a simple HTTP se
 ![Alt text](https://github.com/crosson/site_test/blob/master/screenshot.png?raw=true "Example Output")
 
 If you want to experiment with more flags review  with rspec -h.
+
+## Todos
+
+* Update MYSQL Method
+* Update SMTP Method
+* Update HTML Parsing method and review performance
+* Add a TCP Ping method
