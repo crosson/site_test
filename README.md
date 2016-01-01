@@ -101,7 +101,7 @@ $
 The test tells you exactly what it expected and what it recieved instead. 
 
 ## Bonus
-You get access to all of rspecs flags. Normally your site_test will only output errors after the test is run. Typically you will have this running in a loop during your maintenance but sometimes you want detailed output in realtime.
+You get access to all rspecs flags. Normally your site_test will only output errors after the test is completed. Typically you will have this running in a loop during your maintenance but sometimes you may want detailed output in realtime for documentation later. 
 
 Try using the --format documentation flag.
 ```
@@ -157,3 +157,5 @@ Loop your test using the --format html flag and --out flag. Run a simple HTTP se
 [See example output](https://github.com/crosson/site_test/blob/master/mytest.html)
 
 ![Alt text](https://github.com/crosson/site_test/blob/master/screenshot.png?raw=true "Example Output")
+
+If you want to experiment with more flags review  with rspec -h.
