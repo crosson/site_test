@@ -9,6 +9,7 @@ Site tests are easy to read and share. Anyone should be able to understand the i
 Test driven methodolgies are good practices beyond the world of software development.
 
 ```
+# mytest.txt
 #site sitename
 site Load balancer failover
 
