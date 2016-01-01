@@ -1,0 +1,43 @@
+# Tests can be placed in any order. They will be organized by their task.
+# In this way you can structure your group of tests that make the most sense to effortlessly whatever maintenance you might be doing.
+
+#site sitename
+site Alpental
+
+# # #
+# Format
+# test host expected_result
+#
+
+# # #
+# test host expected_result
+#
+icmp 127.0.0.1 true
+icmp 8.8.8.8 true
+icmp 1.2.3.4 false
+icmp www.google.com true
+
+# # #
+# DNS SECTION
+# dns host expected_result alternative_ns
+#
+dns www.summitatsnoqualmie.com 96.31.166.53
+dns nwac.com 67.195.61.46 4.2.2.1
+
+# # #
+# HTTP Section
+#
+http www.google.com 200
+http https://store.apple.com/ 301
+
+# # #
+# SSL Section
+#
+
+ssl www.google.com 0
+
+# # #
+# MYSQL Section
+# mysql host expected_version
+#
+mysql 10.10.10.10 5.6.16
