@@ -1,6 +1,7 @@
 require 'net/ping'
 require 'resolv'
 require 'timeout'
+require 'socket'
 
 module SITETEST
   module SITEPARSE
@@ -17,6 +18,7 @@ module SITETEST
       smtp_hosts = []
       mysql_hosts = []
       html_hosts = []
+      tcp_hosts = []
       site_name = 'Missing "Site Name" line'
       
       text.lines do |line|
@@ -52,8 +54,9 @@ module SITETEST
               host[:host_header] = nil
               host[:expected_result] = line.match(/\'(.*?)\'/)[1]              
             end
-            
-            html_hosts << host
+          when "tcp"
+            port = line_a[3].nil? ? 80 : line_a[3].to_i
+            tcp_hosts << {:hostname => line_a[1], :expected_result => to_boolean(line_a[2]), :port => port}
           else
             #skip line
           end
@@ -61,12 +64,26 @@ module SITETEST
         
       end
       
-      return {:mysql_hosts => mysql_hosts, :html_hosts => html_hosts  ,:icmp_hosts => icmp_hosts, :dns_hosts => dns_hosts, :http_hosts => http_hosts, :ssl_hosts => ssl_hosts, :site_name => site_name, :smtp_hosts => smtp_hosts}
+      return {:mysql_hosts => mysql_hosts, :html_hosts => html_hosts  ,:icmp_hosts => icmp_hosts, :dns_hosts => dns_hosts, :http_hosts => http_hosts, :ssl_hosts => ssl_hosts, :site_name => site_name, :smtp_hosts => smtp_hosts, :tcp_hosts => tcp_hosts}
       
     end
   end
 
   module TEST
+    def tcping(host, port=80, timeout = 1)
+      result = nil
+      Timeout::timeout(timeout) do
+        begin
+      		socket = TCPSocket.open(host, port)
+          result = true
+          socket.close
+        rescue 
+          result = false
+        end
+      end
+      return result
+    end
+    
     def ping(host)
       host = Net::Ping::External.new(host)
       host.timeout = 1
