@@ -1,9 +1,9 @@
 Gem::Specification.new do |s|
   s.name        = 'site_test'
-  s.version     = '0.1.1'
+  s.version     = '0.1.2'
   s.date        = '2016-01-01'
   s.summary     = "Automated Functional testing for network engineers."
-  s.description = "Update: Updated SSL and HTTP methods moving away from system calls"
+  s.description = "Update: Added a tcping function"
   s.authors     = ["Cliff Rosson"]
   s.email       = 'Cliff.rosson@gmail.com'
   s.files       = ["lib/site_test.rb"]

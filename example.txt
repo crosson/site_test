@@ -41,3 +41,13 @@ ssl www.google.com 0
 # mysql host expected_version
 #
 mysql 10.10.10.10 5.6.16
+
+
+# # #
+# test host expected_result
+#
+tcp 127.0.0.1 false
+tcp www.google.com true
+tcp www.google.com true 443
+tcp www.google.com false 8080
+

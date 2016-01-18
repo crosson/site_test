@@ -29,6 +29,7 @@ $smtp_checks = parsed_objects[:smtp_hosts]
 $site_name = parsed_objects[:site_name]
 $mysql_checks = parsed_objects[:mysql_hosts]
 $html_checks = parsed_objects[:html_hosts]
+$tcp_checks = parsed_objects[:tcp_hosts]
 
 
 describe "#{$site_name.capitalize} check >> " do
@@ -96,5 +97,13 @@ describe "#{$site_name.capitalize} check >> " do
         end
       end
     end
-  end    
+  end
+  describe "TCP: Check >> " do 
+    $tcp_checks.each do |host|
+      it "#{host[:hostname]} should tcping #{host[:expected_result]} >> " do
+        expected = host[:expected_result]
+        expect(tcping(host[:hostname], host[:port])).to be expected
+      end
+    end
+  end
 end
