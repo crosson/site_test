@@ -72,14 +72,18 @@ module SITETEST
   module TEST
     def tcping(host, port=80, timeout = 1)
       result = nil
-      Timeout::timeout(timeout) do
-        begin
-      		socket = TCPSocket.open(host, port)
-          result = true
-          socket.close
-        rescue 
-          result = false
+      begin
+        Timeout::timeout(timeout) do
+          begin
+        		socket = TCPSocket.open(host, port)
+            result = true
+            socket.close
+          rescue 
+            result = false
+          end
         end
+      rescue
+        result = false
       end
       return result
     end

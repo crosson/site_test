@@ -100,7 +100,7 @@ describe "#{$site_name.capitalize} check >> " do
   end
   describe "TCP: Check >> " do 
     $tcp_checks.each do |host|
-      it "#{host[:hostname]} should tcping #{host[:expected_result]} >> " do
+      it "#{host[:hostname]}:#{host[:port]} should tcping #{host[:expected_result]} >> " do
         expected = host[:expected_result]
         expect(tcping(host[:hostname], host[:port])).to be expected
       end
