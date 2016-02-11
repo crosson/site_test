@@ -117,6 +117,7 @@ module SITETEST
         http.open_timeout = timeout
         if address[0..4].include? "https"
           http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         end
         response = http.start() { |http| http.get(url) }
         return response.code.to_i
