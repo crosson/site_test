@@ -33,7 +33,14 @@ Finished in 1.15 seconds (files took 0.09136 seconds to load)
 
 $
 ```
-
+## Install
+```
+git clone https://github.com/crosson/site_test
+cd site_test/site_test/
+gem install site_test
+cd ~/bin
+ln -s [path to site_test git repo]/test_my.rb test_my 
+```
 ## What
 Site Test is just a wrapper around RSPEC. It reads a text file you create and runs a series of tests against it. These are the current tests supported.
 
