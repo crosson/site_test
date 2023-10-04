@@ -35,7 +35,7 @@ $tcp_checks = parsed_objects[:tcp_hosts]
 describe "#{$site_name.capitalize} check >> " do
   describe "ICMP: Check >> " do 
     $icmp_checks.each do |host|
-      it "#{host[:hostname]} should ping #{host[:expected_result]} >> ", :icmp => do
+      it "#{host[:hostname]} should ping #{host[:expected_result]} >> ", :icmp => true do
         expected = host[:expected_result] ? true : false
         expect(ping(host[:hostname])).to be expected
       end
