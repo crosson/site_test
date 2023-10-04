@@ -20,11 +20,11 @@ describe SITETEST::TEST do
   
   describe 'resolv(host, server = "8.8.8.8")' do
     it 'Should resolv hostnames' do
-      expect(resolv('www.summitatsnoqualmie.com')).to eq "96.31.166.53"
+      expect(resolv('www.summitatsnoqualmie.com')).to eq "137.135.33.14"
     end
     
     it 'Should resolv hostnames with a specific ns' do
-      expect(resolv('nwac.com', '4.2.2.1')).to eq "67.195.61.46"
+      expect(resolv('nwac.com', '4.2.2.1')).to eq "206.188.193.219"
     end
     
     it 'Should fail to resolve unresolvable hosts' do
@@ -44,7 +44,7 @@ describe SITETEST::TEST do
   
   describe 'ssl_code(address, port = 443, path = "/")' do
     it 'should return ssl codes' do
-      expect(ssl_code('gmail.com')).to eq 0
+      expect(ssl_code('www.google.com')).to eq 0
     end
   end
   

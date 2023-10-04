@@ -35,7 +35,7 @@ $tcp_checks = parsed_objects[:tcp_hosts]
 describe "#{$site_name.capitalize} check >> " do
   describe "ICMP: Check >> " do 
     $icmp_checks.each do |host|
-      it "#{host[:hostname]} should ping #{host[:expected_result]} >> " do
+      it "#{host[:hostname]} should ping #{host[:expected_result]} >> ", :icmp => do
         expected = host[:expected_result] ? true : false
         expect(ping(host[:hostname])).to be expected
       end
@@ -44,7 +44,7 @@ describe "#{$site_name.capitalize} check >> " do
 
   describe "DNS: Check >> " do
     $dns_checks.each do |host|
-      it "#{host[:hostname]} should resolve to #{host[:expected_result]} >> " do
+      it "#{host[:hostname]} should resolve to #{host[:expected_result]} >> ", :dns => true do
         unless host[:server].nil?
           expect(resolv(host[:hostname], host[:server])).to eq host[:expected_result]
         else
@@ -56,7 +56,7 @@ describe "#{$site_name.capitalize} check >> " do
 
   describe "HTTP: Check >> " do
     $http_checks.each do |address|
-      it "#{address[:address]} should result in #{address[:expected_result]} >> " do
+      it "#{address[:address]} should result in #{address[:expected_result]} >> ", :http => true do
         expect(http_code(address[:address])).to eq address[:expected_result]
       end
     end
@@ -65,7 +65,7 @@ describe "#{$site_name.capitalize} check >> " do
   
   describe "SSL: Check >> " do
     $ssl_checks.each do |address|
-      it "SSL #{address[:address]} should result in #{address[:expected_result]} >> " do
+      it "SSL #{address[:address]} should result in #{address[:expected_result]} >> ", :ssl => true do
         expect(ssl_code(address[:address])).to eq address[:expected_result]
       end
     end
@@ -73,7 +73,7 @@ describe "#{$site_name.capitalize} check >> " do
   
   describe "SMTP: Check >> " do
     $smtp_checks.each do |address|
-      it "SMTP #{address[:address]} should result in #{address[:expected_result]} >> " do
+      it "SMTP #{address[:address]} should result in #{address[:expected_result]} >> ", :smtp => true do
         expect(smtp?(address[:address])).to eq address[:expected_result]
       end
     end
@@ -81,7 +81,7 @@ describe "#{$site_name.capitalize} check >> " do
   
   describe "MYSQL: Check >> " do
     $mysql_checks.each do |address|
-      it "MYSQL #{address[:address]} should result in #{address[:expected_result]} >> " do
+      it "MYSQL #{address[:address]} should result in #{address[:expected_result]} >> ", :mysql => true do
         expect(mysql?(address[:address])).to eq address[:expected_result]
       end
     end
@@ -89,7 +89,7 @@ describe "#{$site_name.capitalize} check >> " do
   
   describe "HTML: Check >> " do
     $html_checks.each do |address|
-      it "HTML #{address[:address]} should result in #{address[:expected_result]} >> " do
+      it "HTML #{address[:address]} should result in #{address[:expected_result]} >> ", :html => true do
         if address[:host_header]
           expect(html(address[:address], address[:host_header])).to eq address[:expected_result]          
         else
@@ -100,7 +100,7 @@ describe "#{$site_name.capitalize} check >> " do
   end
   describe "TCP: Check >> " do 
     $tcp_checks.each do |host|
-      it "#{host[:hostname]}:#{host[:port]} should tcping #{host[:expected_result]} >> " do
+      it "#{host[:hostname]}:#{host[:port]} should tcping #{host[:expected_result]} >> ", :tcp => true do
         expected = host[:expected_result]
         expect(tcping(host[:hostname], host[:port])).to be expected
       end
