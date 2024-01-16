@@ -22,7 +22,7 @@ module SITETEST
       site_name = 'Missing "Site Name" line'
       
       text.lines do |line|
-        line_a = line.downcase.split
+        line_a = line.split
         
         unless line_a.empty?
           case line_a[0]
@@ -130,10 +130,14 @@ module SITETEST
     def ssl_code(address, port = 443, timeout = 3)
       begin
         Timeout::timeout(timeout) do
+          cert_store = OpenSSL::X509::Store.new
+          cert_store.set_default_paths
           ssl_context = OpenSSL::SSL::SSLContext.new
-          ssl_context.verify_mode
+          ssl_context.verify_mode = 0
+          ssl_context.cert_store = cert_store
           tcp_client = TCPSocket.new address, port
           ssl_client = OpenSSL::SSL::SSLSocket.new tcp_client, ssl_context
+          ssl_client.hostname = address
           ssl_client.connect
           verify_result = ssl_client.verify_result
           ssl_client.close

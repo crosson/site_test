@@ -40,11 +40,18 @@ describe SITETEST::TEST do
     it "should return a 0 if a conncetion is reset or no code is returned" do
       expect(http_code('http://1.2.3.4/?0a0fa')).to eq 0
     end
+    it "Should respect URI case" do
+      expect(http_code('http://ifconfig.me/ip')).to eq 200
+      expect(http_code('http://ifconfig.me/IP')).to eq 301
+    end
+
   end
   
   describe 'ssl_code(address, port = 443, path = "/")' do
     it 'should return ssl codes' do
       expect(ssl_code('www.google.com')).to eq 0
+      expect(ssl_code('self-signed.badssl.com')).to eq 18
+      expect(ssl_code('expired.badssl.com')).to eq 10
     end
   end
   
