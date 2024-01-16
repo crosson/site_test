@@ -22,7 +22,7 @@ module SITETEST
       site_name = 'Missing "Site Name" line'
       
       text.lines do |line|
-        line_a = line.downcase.split
+        line_a = line.split
         
         unless line_a.empty?
           case line_a[0]
