@@ -50,6 +50,8 @@ describe SITETEST::TEST do
   describe 'ssl_code(address, port = 443, path = "/")' do
     it 'should return ssl codes' do
       expect(ssl_code('www.google.com')).to eq 0
+      expect(ssl_code('self-signed.badssl.com')).to eq 18
+      expect(ssl_code('expired.badssl.com')).to eq 10
     end
   end
   
